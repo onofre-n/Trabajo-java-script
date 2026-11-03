@@ -1,0 +1,246 @@
+/* =====================================================
+   ESTILOS DE LA PÁGINA DE PRESUPUESTO
+   Usa las variables de estilos.css (--color-principal, etc.).
+   ===================================================== */
+
+.seccion {
+  padding: 60px 0;
+}
+
+.contenedor--estrecho {
+  max-width: 720px;
+}
+
+.seccion__titulo {
+  font-size: 2.2rem;
+  color: var(--color-principal);
+  margin-bottom: 12px;
+}
+
+.intro {
+  color: var(--color-suave);
+  margin-bottom: 32px;
+}
+
+/* ===== FORMULARIO ===== */
+.formulario__parte {
+  border: 1px solid var(--color-claro);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  background: #fff;
+}
+
+.formulario__parte legend {
+  font-family: var(--fuente-titulos);
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  color: var(--color-principal);
+  padding: 0 8px;
+}
+
+/* Dos columnas en ordenador: nombre | apellidos, teléfono | correo */
+.formulario__parte {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* :not([type="checkbox"]) = todos los input MENOS las casillas,
+   que tienen su propio estilo más abajo */
+.campo input:not([type="checkbox"]),
+.campo select {
+  font: inherit;
+  padding: 10px 12px;
+  border: 2px solid var(--color-borde);
+  border-radius: 6px;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.campo input:not([type="checkbox"]):focus,
+.campo select:focus {
+  outline: none;
+  border-color: var(--color-principal);
+}
+
+.campo__ayuda {
+  font-size: 0.8rem;
+  color: var(--color-suave);
+  margin-top: 4px;
+}
+
+/* Mensaje de error debajo de cada campo (vacío si no hay error) */
+.campo__error {
+  font-size: 0.85rem;
+  color: var(--color-alerta);
+  min-height: 1.2em; /* reserva el hueco para que nada "salte" */
+}
+
+/* Clases que añade el JavaScript según el resultado */
+.campo input.campo--mal,
+.campo select.campo--mal {
+  border-color: var(--color-alerta);
+  background: var(--color-alerta-claro);
+}
+
+.campo input.campo--bien,
+.campo select.campo--bien {
+  border-color: var(--color-principal-medio);
+}
+
+/* En las casillas no hay borde que pintar: usamos un contorno rojo */
+.campo input[type="checkbox"].campo--mal {
+  outline: 2px solid var(--color-alerta);
+  outline-offset: 2px;
+}
+
+/* ===== PARTE 2: PRESUPUESTO ===== */
+
+/* Ocupa las dos columnas de la cuadrícula del fieldset */
+.campo--ancho {
+  grid-column: 1 / -1;
+}
+
+/* La parte 3 tiene un solo campo: una sola columna */
+.formulario__parte--simple {
+  grid-template-columns: 1fr;
+}
+
+/* Título de un grupo de campos (no es un <label> porque no va con un solo input) */
+.campo__titulo {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Casillas de extras: dos columnas en ordenador */
+.extras {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.extra {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 2px solid var(--color-borde);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 400 !important;
+  margin-bottom: 0 !important;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.extra strong {
+  margin-left: auto; /* empuja el precio a la derecha */
+  color: var(--color-principal);
+  white-space: nowrap;
+}
+
+.extra input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-principal); /* color de la casilla marcada */
+  flex-shrink: 0;
+}
+
+/* :has() = "la caja .extra que TIENE dentro una casilla marcada" */
+.extra:has(input:checked) {
+  border-color: var(--color-principal);
+  background: var(--color-claro);
+}
+
+/* Resumen con el precio final */
+.resumen {
+  background: var(--color-claro);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.resumen p {
+  display: flex;
+  justify-content: space-between; /* concepto a la izquierda, importe a la derecha */
+  padding: 6px 0;
+  color: var(--color-suave);
+}
+
+.resumen em {
+  font-style: normal;
+  font-size: 0.85rem;
+}
+
+.resumen__total {
+  border-top: 2px solid var(--color-borde);
+  margin-top: 8px;
+  padding-top: 14px !important;
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: var(--color-principal) !important;
+}
+
+/* ===== BOTONES ===== */
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* .boton.boton--secundario (dos clases juntas) es más específico que .boton solo,
+   así que gana aunque la regla de .boton esté más abajo en el archivo */
+.formulario .boton.boton--secundario {
+  background: transparent;
+  color: var(--color-principal);
+  border: 2px solid var(--color-principal);
+}
+
+/* ===== BOTÓN Y MENSAJE FINAL ===== */
+.formulario .boton {
+  font: inherit;
+  font-weight: 600;
+  background: var(--color-principal);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 28px;
+  cursor: pointer;
+}
+
+.formulario .boton:hover {
+  background: var(--color-acento);
+  color: var(--color-texto);
+}
+
+.mensaje-final {
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+.mensaje-final--ok {
+  color: var(--color-principal-medio);
+}
+
+.mensaje-final--error {
+  color: var(--color-alerta);
+}
+
+/* ===== MÓVIL ===== */
+@media (max-width: 700px) {
+  .formulario__parte,
+  .extras {
+    grid-template-columns: 1fr; /* una sola columna */
+  }
+}

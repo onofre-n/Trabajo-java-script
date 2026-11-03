@@ -1,0 +1,11 @@
+[
+  { "imagen": "img/galeria/partido-1.svg", "titulo": "Gol de la victoria ante el Atlético Ribera", "categoria": "Partidos" },
+  { "imagen": "img/galeria/entreno-1.svg", "titulo": "Sesión de pretemporada", "categoria": "Entrenamientos" },
+  { "imagen": "img/galeria/aficion-1.svg", "titulo": "La grada en el derbi", "categoria": "Afición" },
+  { "imagen": "img/galeria/partido-2.svg", "titulo": "Saque de esquina en la Copa", "categoria": "Partidos" },
+  { "imagen": "img/galeria/entreno-2.svg", "titulo": "Trabajo táctico del primer equipo", "categoria": "Entrenamientos" },
+  { "imagen": "img/galeria/aficion-2.svg", "titulo": "Recibimiento al autobús del equipo", "categoria": "Afición" },
+  { "imagen": "img/galeria/partido-3.svg", "titulo": "Celebración en el Estadio Municipal", "categoria": "Partidos" },
+  { "imagen": "img/galeria/entreno-3.svg", "titulo": "Entrenamiento de porteros", "categoria": "Entrenamientos" },
+  { "imagen": "img/galeria/aficion-3.svg", "titulo": "Peña Estrella en el último partido", "categoria": "Afición" }
+]

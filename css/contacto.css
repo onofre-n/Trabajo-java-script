@@ -1,0 +1,162 @@
+/* =====================================================
+   ESTILOS DE LA PÁGINA DE CONTACTO
+   Usa las variables de estilos.css (--color-principal, etc.)
+   ===================================================== */
+
+/* Dos columnas: datos (más estrecha) y mapa (más ancha) */
+.contacto {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.contacto__titulo {
+  font-size: 1.6rem;
+  color: var(--color-principal);
+  margin-bottom: 20px;
+}
+
+/* ===== DATOS DE CONTACTO ===== */
+address {
+  font-style: normal; /* el navegador pone <address> en cursiva por defecto */
+}
+
+.dato {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-claro);
+  color: var(--color-suave);
+}
+
+.dato strong {
+  display: block;
+  color: var(--color-texto);
+  margin-bottom: 2px;
+}
+
+.dato__icono {
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.dato a {
+  color: var(--color-principal);
+  font-weight: 500;
+}
+
+/* ===== FORMULARIO DE RUTA ===== */
+.ruta {
+  margin-bottom: 16px;
+}
+
+.ruta label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.ruta__fila {
+  display: flex;
+  gap: 10px;
+}
+
+.ruta__fila input {
+  flex: 1; /* el campo ocupa todo el espacio que deja el botón */
+  font: inherit;
+  padding: 10px 12px;
+  border: 2px solid var(--color-borde);
+  border-radius: 6px;
+}
+
+.ruta__fila input:focus {
+  outline: none;
+  border-color: var(--color-principal);
+}
+
+.boton--pequeno {
+  font: inherit;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+/* Botón con aspecto de enlace */
+.enlace-boton {
+  font: inherit;
+  background: none;
+  border: none;
+  color: var(--color-principal);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0 0;
+}
+
+.enlace-boton:hover {
+  text-decoration: underline;
+}
+
+/* ===== MAPA ===== */
+/* ¡Importante! Leaflet necesita que el div tenga una altura, o no se ve */
+.mapa {
+  height: 460px;
+  border-radius: 10px;
+  border: 1px solid var(--color-borde);
+  position: relative;
+  z-index: 0; /* crea su propia capa: así la cabecera (z-index 1000) queda por encima */
+}
+
+/* Marcadores propios (los crea L.divIcon en contacto.js) */
+.marcador {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.marcador--club {
+  width: 40px;
+  height: 40px;
+  background: var(--color-acento);
+  color: var(--color-principal);
+  font-size: 1.2rem;
+}
+
+.marcador--cliente {
+  width: 22px;
+  height: 22px;
+  background: var(--color-alerta);
+}
+
+/* ===== MENSAJE DE LA RUTA ===== */
+.info-ruta {
+  margin-top: 14px;
+  min-height: 1.6em;
+  color: var(--color-suave);
+}
+
+.info-ruta--ok {
+  color: var(--color-texto);
+  background: var(--color-claro);
+  padding: 12px 16px;
+  border-radius: 6px;
+}
+
+.info-ruta--error {
+  color: var(--color-alerta);
+}
+
+/* ===== MÓVIL ===== */
+@media (max-width: 800px) {
+  .contacto {
+    grid-template-columns: 1fr; /* datos arriba, mapa abajo */
+  }
+
+  .mapa {
+    height: 340px;
+  }
+}

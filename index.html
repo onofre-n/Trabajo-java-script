@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CF Estrella del Sur · Inicio</title>
+
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Iconos de redes sociales: librería Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Nuestra hoja de estilos -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- ===== CABECERA Y MENÚ ===== -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__dentro">
+      <a href="index.html" class="logo">
+        <span class="logo__escudo" aria-hidden="true">★</span> Estrella del Sur
+      </a>
+      <!-- Botón ☰: solo se ve en el móvil (ver .menu-boton en estilos.css) -->
+      <button class="menu-boton" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <nav class="menu" id="menu" aria-label="Menú principal">
+        <a href="#portada" class="activo">Inicio</a>
+        <a href="#partidos">Partidos</a>
+        <a href="#noticias">Noticias</a>
+        <a href="#club">El club</a>
+        <a href="galeria.html">Galería</a>
+        <a href="presupuesto.html">Presupuesto</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== SECCIÓN 1: PORTADA ===== -->
+    <section id="portada" class="portada">
+      <div class="contenedor portada__dentro">
+        <p class="etiqueta">Temporada 2026/27</p>
+        <h1>Un equipo,<br>una afición</h1>
+        <p class="portada__texto">
+          Toda la actualidad del CF Estrella del Sur: resultados, próximos
+          partidos y las últimas noticias del club.
+        </p>
+        <a href="#partidos" class="boton">Ver próximos partidos</a>
+      </div>
+    </section>
+
+    <!-- ===== SECCIÓN 2: PRÓXIMOS PARTIDOS ===== -->
+    <section id="partidos" class="seccion">
+      <div class="contenedor">
+        <h2 class="seccion__titulo">Próximos partidos</h2>
+        <div class="tarjetas">
+          <article class="partido">
+            <p class="partido__competicion">Liga · Jornada 12</p>
+            <h3 class="partido__equipos">
+              <span>Estrella del Sur</span>
+              <span class="partido__vs">VS</span>
+              <span>Atlético Ribera</span>
+            </h3>
+            <p class="partido__fecha">Sábado 8 de noviembre · 18:00</p>
+            <p class="partido__lugar">Estadio Municipal (local)</p>
+          </article>
+          <article class="partido">
+            <p class="partido__competicion">Copa · Segunda ronda</p>
+            <h3 class="partido__equipos">
+              <span>UD Montealto</span>
+              <span class="partido__vs">VS</span>
+              <span>Estrella del Sur</span>
+            </h3>
+            <p class="partido__fecha">Miércoles 12 de noviembre · 20:30</p>
+            <p class="partido__lugar">Campo de Montealto (visitante)</p>
+          </article>
+          <article class="partido">
+            <p class="partido__competicion">Liga · Jornada 13</p>
+            <h3 class="partido__equipos">
+              <span>Estrella del Sur</span>
+              <span class="partido__vs">VS</span>
+              <span>Racing Costa Azul</span>
+            </h3>
+            <p class="partido__fecha">Domingo 16 de noviembre · 12:00</p>
+            <p class="partido__lugar">Estadio Municipal (local)</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECCIÓN 3: NOTICIAS (se cargan con Ajax desde datos/noticias.json) ===== -->
+    <section id="noticias" class="seccion seccion--clara">
+      <div class="contenedor">
+        <h2 class="seccion__titulo">Últimas noticias</h2>
+        <!-- Este contenedor empieza vacío: JavaScript lo rellena con las noticias -->
+        <div id="lista-noticias" class="noticias">
+          <p class="cargando">Cargando noticias…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECCIÓN 4: EL CLUB ===== -->
+    <section id="club" class="seccion">
+      <div class="contenedor club">
+        <div>
+          <h2 class="seccion__titulo">El club</h2>
+          <p>
+            El CF Estrella del Sur nació en 1952 de la mano de un grupo de
+            vecinos del barrio. Hoy cuenta con un primer equipo, una escuela
+            de fútbol base con más de 300 jugadores y una afición que llena
+            el estadio cada fin de semana.
+          </p>
+        </div>
+        <ul class="datos">
+          <li><strong>1952</strong> Año de fundación</li>
+          <li><strong>4</strong> Ligas regionales ganadas</li>
+          <li><strong>8.500</strong> Socios y socias</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie">
+    <div class="contenedor pie__columnas">
+
+      <!-- Columna 1: logotipo, lema y redes sociales -->
+      <div>
+        <a href="index.html" class="logo pie__logo">
+          <span class="logo__escudo" aria-hidden="true">★</span> Estrella del Sur
+        </a>
+        <p>Club de fútbol fundado en 1952. Un equipo, una afición.</p>
+        <!-- Iconos de la librería Font Awesome (clase fa-brands = logotipos de marcas) -->
+        <div class="redes">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Columna 2: dirección de la empresa -->
+      <div>
+        <h2 class="pie__titulo">Dónde estamos</h2>
+        <address>
+          Estadio Municipal Estrella del Sur<br>
+          Avenida de la Estrella, 12<br>
+          41013 Sevilla<br>
+          <a href="tel:+34954000000">954 000 000</a><br>
+          <a href="mailto:info@estrelladelsur.es">info@estrelladelsur.es</a>
+        </address>
+      </div>
+
+      <!-- Columna 3: aviso legal -->
+      <div>
+        <h2 class="pie__titulo">Información legal</h2>
+        <ul class="pie__lista">
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="aviso-legal.html#privacidad">Política de privacidad</a></li>
+          <li><a href="aviso-legal.html#cookies">Política de cookies</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pie__final">
+      <div class="contenedor">
+        <p>&copy; 2026 CF Estrella del Sur · Todos los derechos reservados · Trabajo de clase</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Librería jQuery (para hacer la petición Ajax de forma sencilla) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Nuestro código JavaScript -->
+  <script src="js/script.js"></script>
+  <!-- Menú desplegable del móvil (común a todas las páginas) -->
+  <script src="js/menu.js"></script>
+</body>
+</html>

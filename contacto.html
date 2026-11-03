@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CF Estrella del Sur · Contacto</title>
+
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos de la librería de mapas Leaflet (obligatorio para que el mapa se vea bien) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <!-- Iconos de redes sociales: librería Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Estilos comunes y estilos de esta página -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+
+  <!-- ===== CABECERA Y MENÚ ===== -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__dentro">
+      <a href="index.html" class="logo">
+        <span class="logo__escudo" aria-hidden="true">★</span> Estrella del Sur
+      </a>
+      <!-- Botón ☰: solo se ve en el móvil (ver .menu-boton en estilos.css) -->
+      <button class="menu-boton" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <nav class="menu" id="menu" aria-label="Menú principal">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#partidos">Partidos</a>
+        <a href="index.html#noticias">Noticias</a>
+        <a href="index.html#club">El club</a>
+        <a href="galeria.html">Galería</a>
+        <a href="presupuesto.html">Presupuesto</a>
+        <a href="contacto.html" class="activo">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== TÍTULO DE LA PÁGINA ===== -->
+    <section class="cabecera-pagina">
+      <div class="contenedor">
+        <p class="etiqueta">Ven a vernos</p>
+        <h1>Contacto</h1>
+      </div>
+    </section>
+
+    <!-- Simple envoltorio para el espaciado: es un div porque no tiene título propio -->
+    <div class="seccion">
+      <div class="contenedor contacto">
+
+        <!-- ===== DATOS DE CONTACTO ===== -->
+        <!-- <address> es la etiqueta HTML pensada para datos de contacto -->
+        <section class="contacto__datos" aria-labelledby="titulo-datos">
+          <h2 id="titulo-datos" class="contacto__titulo">CF Estrella del Sur</h2>
+          <address>
+            <div class="dato">
+              <span class="dato__icono" aria-hidden="true">📍</span>
+              <div>
+                <strong>Dirección</strong>
+                Estadio Municipal Estrella del Sur<br>
+                Avenida de la Estrella, 12<br>
+                41013 Sevilla
+              </div>
+            </div>
+            <div class="dato">
+              <span class="dato__icono" aria-hidden="true">📞</span>
+              <div>
+                <strong>Teléfono</strong>
+                <a href="tel:+34954000000">954 000 000</a>
+              </div>
+            </div>
+            <div class="dato">
+              <span class="dato__icono" aria-hidden="true">✉️</span>
+              <div>
+                <strong>Correo electrónico</strong>
+                <a href="mailto:info@estrelladelsur.es">info@estrelladelsur.es</a>
+              </div>
+            </div>
+            <div class="dato">
+              <span class="dato__icono" aria-hidden="true">🕐</span>
+              <div>
+                <strong>Horario de oficinas</strong>
+                Lunes a viernes: 10:00–14:00 y 17:00–20:00<br>
+                Sábados: 10:00–13:00
+              </div>
+            </div>
+          </address>
+        </section>
+
+        <!-- ===== MAPA Y RUTA ===== -->
+        <section class="contacto__mapa" aria-labelledby="titulo-mapa">
+          <h2 id="titulo-mapa" class="contacto__titulo">¿Cómo llegar?</h2>
+
+          <!-- Formulario para calcular la ruta -->
+          <form id="form-ruta" class="ruta">
+            <label for="origen">Escribe tu dirección o usa tu ubicación actual</label>
+            <div class="ruta__fila">
+              <input type="text" id="origen" placeholder="Ej.: Plaza Nueva, Sevilla">
+              <button type="submit" class="boton boton--pequeno">Calcular ruta</button>
+            </div>
+            <button type="button" id="mi-ubicacion" class="enlace-boton">
+              <span aria-hidden="true">📍</span> Usar mi ubicación actual
+            </button>
+          </form>
+
+          <!-- Leaflet dibuja el mapa dentro de este div -->
+          <div id="mapa" class="mapa"></div>
+
+          <!-- Aquí aparecen la distancia, el tiempo o los errores -->
+          <p id="info-ruta" class="info-ruta" role="status"></p>
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie">
+    <div class="contenedor pie__columnas">
+
+      <!-- Columna 1: logotipo, lema y redes sociales -->
+      <div>
+        <a href="index.html" class="logo pie__logo">
+          <span class="logo__escudo" aria-hidden="true">★</span> Estrella del Sur
+        </a>
+        <p>Club de fútbol fundado en 1952. Un equipo, una afición.</p>
+        <!-- Iconos de la librería Font Awesome (clase fa-brands = logotipos de marcas) -->
+        <div class="redes">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Columna 2: dirección de la empresa -->
+      <div>
+        <h2 class="pie__titulo">Dónde estamos</h2>
+        <address>
+          Estadio Municipal Estrella del Sur<br>
+          Avenida de la Estrella, 12<br>
+          41013 Sevilla<br>
+          <a href="tel:+34954000000">954 000 000</a><br>
+          <a href="mailto:info@estrelladelsur.es">info@estrelladelsur.es</a>
+        </address>
+      </div>
+
+      <!-- Columna 3: aviso legal -->
+      <div>
+        <h2 class="pie__titulo">Información legal</h2>
+        <ul class="pie__lista">
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="aviso-legal.html#privacidad">Política de privacidad</a></li>
+          <li><a href="aviso-legal.html#cookies">Política de cookies</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pie__final">
+      <div class="contenedor">
+        <p>&copy; 2026 CF Estrella del Sur · Todos los derechos reservados · Trabajo de clase</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Librerías: jQuery (para Ajax) y Leaflet (para el mapa) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Código del mapa -->
+  <script src="js/contacto.js"></script>
+  <!-- Menú desplegable del móvil (común a todas las páginas) -->
+  <script src="js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CF Estrella del Sur · Presupuesto</title>
+
+  <!-- Tipografías de Google Fonts (las mismas que en index.html) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Iconos de redes sociales: librería Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Estilos comunes de toda la web -->
+  <link rel="stylesheet" href="css/estilos.css">
+  <!-- Estilos solo de esta página (el formulario) -->
+  <link rel="stylesheet" href="css/presupuesto.css">
+</head>
+<body>
+
+  <!-- ===== CABECERA Y MENÚ ===== -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__dentro">
+      <a href="index.html" class="logo">
+        <span class="logo__escudo" aria-hidden="true">★</span> Estrella del Sur
+      </a>
+      <!-- Botón ☰: solo se ve en el móvil (ver .menu-boton en estilos.css) -->
+      <button class="menu-boton" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <nav class="menu" id="menu" aria-label="Menú principal">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#partidos">Partidos</a>
+        <a href="index.html#noticias">Noticias</a>
+        <a href="index.html#club">El club</a>
+        <a href="galeria.html">Galería</a>
+        <a href="presupuesto.html" class="activo">Presupuesto</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="seccion">
+    <div class="contenedor contenedor--estrecho">
+      <h1 class="seccion__titulo">Pide tu presupuesto</h1>
+      <p class="intro">
+        ¿Quieres reservar el campo, organizar un torneo o encargar equipaciones?
+        Rellena el formulario y te enviaremos un presupuesto sin compromiso.
+      </p>
+
+      <!--
+        novalidate: desactiva la validación automática del navegador.
+        Así TODA la validación la hace nuestro JavaScript (lo pide el enunciado).
+      -->
+      <form id="form-presupuesto" class="formulario" novalidate>
+
+        <!-- ===== PARTE 1: DATOS DE CONTACTO ===== -->
+        <fieldset class="formulario__parte">
+          <legend>1. Datos de contacto</legend>
+
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" maxlength="15"
+                   autocomplete="given-name" placeholder="Ej.: Lucía">
+            <p class="campo__ayuda">Solo letras, máximo 15 caracteres.</p>
+            <p class="campo__error" id="error-nombre"></p>
+          </div>
+
+          <div class="campo">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos" name="apellidos" maxlength="40"
+                   autocomplete="family-name" placeholder="Ej.: García Martínez">
+            <p class="campo__ayuda">Solo letras, máximo 40 caracteres.</p>
+            <p class="campo__error" id="error-apellidos"></p>
+          </div>
+
+          <div class="campo">
+            <label for="telefono">Teléfono de contacto</label>
+            <input type="tel" id="telefono" name="telefono" maxlength="9"
+                   inputmode="numeric" autocomplete="tel" placeholder="Ej.: 612345678">
+            <p class="campo__ayuda">Solo números, máximo 9 dígitos.</p>
+            <p class="campo__error" id="error-telefono"></p>
+          </div>
+
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email"
+                   autocomplete="email" placeholder="Ej.: nombre_apellido@correo.com">
+            <p class="campo__ayuda">Formato: usuario@dominio.com</p>
+            <p class="campo__error" id="error-email"></p>
+          </div>
+        </fieldset>
+
+        <!-- ===== PARTE 2: DATOS DEL PRESUPUESTO ===== -->
+        <fieldset class="formulario__parte">
+          <legend>2. Tu presupuesto</legend>
+
+          <!-- PRODUCTO: un <select> con varias <option>.
+               El precio de cada opción va en el atributo data-precio -->
+          <div class="campo campo--ancho">
+            <label for="producto">Producto o servicio</label>
+            <select id="producto" name="producto">
+              <option value="" data-precio="0">— Elige una opción —</option>
+              <option value="campo" data-precio="300">Alquiler del campo para un evento · 300 €</option>
+              <option value="equipaciones" data-precio="450">Pack de 15 equipaciones · 450 €</option>
+              <option value="torneo" data-precio="800">Organización de un torneo · 800 €</option>
+              <option value="campus" data-precio="1200">Campus de verano para un grupo · 1.200 €</option>
+            </select>
+            <p class="campo__error" id="error-producto"></p>
+          </div>
+
+          <!-- PLAZO: input numérico. Más días de margen = más descuento -->
+          <div class="campo campo--ancho">
+            <label for="plazo">¿En cuántos días lo necesitas?</label>
+            <input type="number" id="plazo" name="plazo" min="1" max="365" step="1"
+                   placeholder="Ej.: 30">
+            <p class="campo__ayuda">
+              Descuentos: de 15 a 29 días, 5 %; de 30 a 59 días, 10 %; 60 días o más, 15 %.
+            </p>
+            <p class="campo__error" id="error-plazo"></p>
+          </div>
+
+          <!-- EXTRAS: varias casillas (checkbox); se pueden marcar todas las que se quiera -->
+          <div class="campo campo--ancho">
+            <span class="campo__titulo" id="titulo-extras">Extras (opcionales)</span>
+            <!-- role="group" agrupa las casillas y aria-labelledby les pone el título de arriba -->
+            <div class="extras" role="group" aria-labelledby="titulo-extras">
+              <label class="extra">
+                <input type="checkbox" name="extras" value="dorsales" data-precio="60">
+                Nombres y dorsales personalizados <strong>+60 €</strong>
+              </label>
+              <label class="extra">
+                <input type="checkbox" name="extras" value="balones" data-precio="90">
+                Pack de 10 balones oficiales <strong>+90 €</strong>
+              </label>
+              <label class="extra">
+                <input type="checkbox" name="extras" value="fotografo" data-precio="120">
+                Fotógrafo durante el evento <strong>+120 €</strong>
+              </label>
+              <label class="extra">
+                <input type="checkbox" name="extras" value="seguro" data-precio="40">
+                Seguro de material <strong>+40 €</strong>
+              </label>
+            </div>
+          </div>
+
+          <!-- PRESUPUESTO: <output> es la etiqueta HTML pensada para mostrar
+               el resultado de un cálculo. Se actualiza sola con JavaScript -->
+          <div class="campo campo--ancho">
+            <span class="campo__titulo">Presupuesto final</span>
+            <div class="resumen">
+              <p><span>Producto</span> <span id="res-producto">0,00 €</span></p>
+              <p><span>Extras</span> <span id="res-extras">0,00 €</span></p>
+              <p><span>Descuento por plazo <em id="res-porcentaje">(0 %)</em></span>
+                 <span id="res-descuento">−0,00 €</span></p>
+              <p class="resumen__total">
+                <span>Total</span>
+                <output id="total" name="total" for="producto plazo">0,00 €</output>
+              </p>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ===== PARTE 3: CONDICIONES Y ENVÍO ===== -->
+        <fieldset class="formulario__parte formulario__parte--simple">
+          <legend>3. Condiciones</legend>
+          <div class="campo">
+            <label class="extra">
+              <input type="checkbox" id="privacidad" name="privacidad">
+              <span>He leído y acepto la
+                <a href="aviso-legal.html#privacidad" target="_blank">política de privacidad</a>
+                del CF Estrella del Sur.</span>
+            </label>
+            <p class="campo__error" id="error-privacidad"></p>
+          </div>
+        </fieldset>
+
+        <div class="botones">
+          <button type="submit" class="boton">Enviar solicitud</button>
+          <!-- type="reset" vacía el formulario sin necesidad de JavaScript -->
+          <button type="reset" class="boton boton--secundario">Borrar formulario</button>
+        </div>
+
+        <!-- Aquí aparece el mensaje final (correcto o con errores) -->
+        <p id="mensaje-final" class="mensaje-final" role="status"></p>
+      </form>
+    </div>
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie">
+    <div class="contenedor pie__columnas">
+
+      <!-- Columna 1: logotipo, lema y redes sociales -->
+      <div>
+        <a href="index.html" class="logo pie__logo">
+          <span class="logo__escudo" aria-hidden="true">★</span> Estrella del Sur
+        </a>
+        <p>Club de fútbol fundado en 1952. Un equipo, una afición.</p>
+        <!-- Iconos de la librería Font Awesome (clase fa-brands = logotipos de marcas) -->
+        <div class="redes">
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Columna 2: dirección de la empresa -->
+      <div>
+        <h2 class="pie__titulo">Dónde estamos</h2>
+        <address>
+          Estadio Municipal Estrella del Sur<br>
+          Avenida de la Estrella, 12<br>
+          41013 Sevilla<br>
+          <a href="tel:+34954000000">954 000 000</a><br>
+          <a href="mailto:info@estrelladelsur.es">info@estrelladelsur.es</a>
+        </address>
+      </div>
+
+      <!-- Columna 3: aviso legal -->
+      <div>
+        <h2 class="pie__titulo">Información legal</h2>
+        <ul class="pie__lista">
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="aviso-legal.html#privacidad">Política de privacidad</a></li>
+          <li><a href="aviso-legal.html#cookies">Política de cookies</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pie__final">
+      <div class="contenedor">
+        <p>&copy; 2026 CF Estrella del Sur · Todos los derechos reservados · Trabajo de clase</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Validación del formulario -->
+  <script src="js/presupuesto.js"></script>
+  <!-- Menú desplegable del móvil (común a todas las páginas) -->
+  <script src="js/menu.js"></script>
+</body>
+</html>
